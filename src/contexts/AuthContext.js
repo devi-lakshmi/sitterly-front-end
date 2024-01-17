@@ -1,0 +1,77 @@
+import { createContext, useCallback, useEffect, useState } from "react";
+
+import { API } from "../lib/API";
+
+const AUTH_TOKEN_STORAGE_KEY = "sitterly_token";
+
+export const AuthContext = createContext({
+  token: null,
+  currentUser: null,
+  storeToken: (_token) => {},
+  removeToken: () => {},
+  getCurrentUser: () => {},
+});
+
+export const AuthProvider = ({ children }) => {
+  const [token, setToken] = useState(
+    localStorage.getItem(AUTH_TOKEN_STORAGE_KEY) || null
+  );
+  const [currentUser, setCurrentUser] = useState(null);
+
+  const removeToken = useCallback(() => {
+    localStorage.removeItem(AUTH_TOKEN_STORAGE_KEY);
+    setToken(null);
+  }, []);
+
+  const getCurrentUser = useCallback(() => {
+    if (!token) {
+      setCurrentUser(null);
+      return;
+    }
+
+    console.log("Getting current user");
+    const api = new API({
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    api
+      .get("/users/profile")
+      .then((response) => {
+        console.log(response.data);
+        setCurrentUser(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+        localStorage.removeItem(AUTH_TOKEN_STORAGE_KEY);
+        console.warn("Token invalid, logging out");
+      });
+  }, [token]);
+
+  const storeToken = useCallback(
+    (newToken) => {
+      localStorage.setItem(AUTH_TOKEN_STORAGE_KEY, newToken);
+      setToken(newToken);
+      getCurrentUser();
+    },
+    [getCurrentUser]
+  );
+
+  useEffect(() => {
+    getCurrentUser();
+  }, [token, getCurrentUser]);
+
+  return (
+    <AuthContext.Provider
+      value={{
+        token,
+        currentUser,
+        storeToken,
+        removeToken,
+        getCurrentUser,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
