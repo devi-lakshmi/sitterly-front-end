@@ -4,6 +4,8 @@ import { createSitterProfile } from '../store/sitterProfiles/thunks';
 import { useApi } from "../hooks/useApi";
 import { useNavigate } from "react-router-dom";
 import { addProfile } from '../store/sitterProfiles/slice';
+
+
 const CreateSitterProfile = () => {
   const api = useApi();
   const navigate = useNavigate();

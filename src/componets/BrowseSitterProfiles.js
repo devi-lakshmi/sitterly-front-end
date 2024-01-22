@@ -4,6 +4,7 @@ import { selectIsLoading, selectSitterProfiles } from '../store/sitterProfiles/s
 import { browseSitterProfiles } from '../store/sitterProfiles/thunks';
 import { useApi } from "../hooks/useApi";
 import { Link } from 'react-router-dom';
+
 const BrowseSitterProfiles = () => {
     const api = useApi();
     const dispatch = useDispatch();

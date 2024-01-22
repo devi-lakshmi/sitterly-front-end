@@ -6,6 +6,8 @@ import { Link, Route, Routes } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth";
 import CreateSitterProfile from "./componets/CreateSitterProfile";
 import BrowseSitterProfiles from "./componets/BrowseSitterProfiles";
+import CreateBookings from "./componets/CreateBookings";
+import BrowseBookings from "./componets/BrowseBookings";
 
 function App() {
   const { user, logout } = useAuth();
@@ -50,8 +52,12 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/createSitterProfile" element={<CreateSitterProfile />} />
           <Route path="/getSitterProfiles" element={<BrowseSitterProfiles />} />
-        </Routes>
+          <Route path="/createBookings" element={<CreateBookings />} />
+         <Route path="/bookings" element={<BrowseBookings />} />
+        
+      </Routes>
       </main>
+
     </div>
   );
 }
