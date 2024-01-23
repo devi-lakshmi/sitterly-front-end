@@ -1,7 +1,7 @@
 import "./App.css";
 
 import { HomePage, LogInPage, SignUpPage } from "./pages";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 
 import { useAuth } from "./hooks/useAuth";
 import CreateSitterProfile from "./componets/CreateSitterProfile";
@@ -11,6 +11,7 @@ import BrowseBookings from "./componets/BrowseBookings";
 
 function App() {
   const { user, logout } = useAuth();
+    const navigate = useNavigate();
 
   return (
     <div className="App min-h-screen flex flex-col">
@@ -36,6 +37,7 @@ function App() {
               onClick={(e) => {
                 e.preventDefault();
                 logout();
+                navigate('/login');
               }}
               className="hover:text-gray-300"
             >
@@ -52,7 +54,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/createSitterProfile" element={<CreateSitterProfile />} />
           <Route path="/getSitterProfiles" element={<BrowseSitterProfiles />} />
-          <Route path="/createBookings" element={<CreateBookings />} />
+          <Route path="/createBookings/:sitterId" element={<CreateBookings />} />
          <Route path="/bookings" element={<BrowseBookings />} />
         
       </Routes>

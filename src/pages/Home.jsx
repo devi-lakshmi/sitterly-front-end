@@ -3,20 +3,18 @@ import { useApi } from "../hooks/useApi";
 import { useAuth } from "../hooks/useAuth";
 
 export const HomePage = () => {
-  const { user ,userRole} = useAuth();
+  const { userRole} = useAuth();
   const api = useApi();
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const getUser = () => {
     api.get("/users/profile");
   
   }
   const handleCreateSitterProfile = () => {
-    // Use the navigate function to redirect to the "/createSitterProfile" route
     navigate("/createSitterProfile");
   };
 
   const handleBrowseSitterProfiles = () => {
-    // Use the navigate function to redirect to the "/getSitterProfiles" route
     navigate("/getSitterProfiles");
   };
  return (
@@ -40,8 +38,7 @@ const navigate = useNavigate();
           Create Sitter Profile
         </button>
      )}
-     <Link to ={"/createBookings" }>createBookings</Link>
-   <Link to ={"/bookings" }>BrowseBookings</Link>
+   <Link to ={"/bookings" } className="text-blue-500 underline hover:text-blue-700">BrowseBookings</Link>
    </div>
   );
 };
