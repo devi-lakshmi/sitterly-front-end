@@ -1,10 +1,12 @@
 
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-
+import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 import { useApi } from '../hooks/useApi';
 import { useNavigate, useParams } from 'react-router-dom';
 import { createBooking } from '../store/bookings/thunks';
+import { Link } from 'react-router-dom';
 
 const CreateBookings = () => {
   const { sitterId } = useParams();
@@ -23,12 +25,18 @@ const CreateBookings = () => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
-  const handleBooking = (e) => {
-    e.preventDefault();
-      dispatch(createBooking(form, api));
-      navigate(`/`);
-      
-  };
+   
+const handleBooking = async (e) => {
+  e.preventDefault();
+
+  try {
+    dispatch(createBooking(form, api));
+    toast.success('Booking successful!');
+  } catch (error) {
+    console.error('Error while booking:', error);
+    toast.error('Booking failed. Please try again.');
+  }
+};
 
   return (
     <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
@@ -66,11 +74,17 @@ const CreateBookings = () => {
         </label>
       <button
         onClick={handleBooking}
-        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+        className="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600"
       >
         Book Sitter
       </button>
-    </div>
+      <br/>
+   <div>
+   <Link to={"/getSitterProfiles"} className="bg-blue-500 text-white py-1 px-2 rounded">
+      Go to sitterProfile
+    </Link>
+  </div>
+  </div>
   );
 };
 

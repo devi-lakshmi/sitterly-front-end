@@ -17,11 +17,15 @@ export const SignUpPage = () => {
   const handleChange = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
+const handleCreateSignup = () => {
+    navigate("/login");
+  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setError(null);
-
+    navigate("/login");
     api
       .post("/users", form)
       .then((res) => {
@@ -67,7 +71,7 @@ export const SignUpPage = () => {
             className="mt-1 p-2 border rounded w-full"
           />
        </div>
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="block text-sm font-medium text-gray-600">
            
           </label>
@@ -96,10 +100,10 @@ export const SignUpPage = () => {
             </label>
           </div>
         </div>
-        
-        <button
-          type="submit"
-          className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700"
+         */}
+         <button
+          type="text" onClick={handleCreateSignup}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
         >
           Sign Up
         </button>

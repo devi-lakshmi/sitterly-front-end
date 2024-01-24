@@ -23,7 +23,8 @@ export const LogInPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError(null);
-
+   
+    
     api
       .post("/users/login", form)
       .then((res) => {
@@ -76,9 +77,10 @@ export const LogInPage = () => {
             className="mt-1 p-2 border rounded w-full"
           />
         </div>
-        <button
-          type="submit"
+        <button 
+          type="text"
           className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700"
+          
         >
           Log In
         </button>
