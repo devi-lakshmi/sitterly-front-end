@@ -2,6 +2,7 @@ import { useApi } from "../../hooks/useApi";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+
 export const SignUpPage = () => {
   const api = useApi();
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const handleCreateSignup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError(null);
-    navigate("/login");
+    // navigate("/login");
     api
       .post("/users", form)
       .then((res) => {
@@ -33,6 +34,7 @@ const handleCreateSignup = () => {
       })
       .catch((err) => {
         console.log(err);
+      
         setError(
           err.response?.data?.detail?.[0].msg ||
             "Something went wrong, please try again."

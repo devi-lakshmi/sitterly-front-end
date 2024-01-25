@@ -3,7 +3,7 @@ import Header from './Header';
 const WelcomePage = () => {
     return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
-      {/* <Header /> Use the shared Header component */}
+    
       <div className="flex-grow p-8"></div>
         <div
       className="bg-gray-100 min-h-screen flex flex-col justify-center items-center"

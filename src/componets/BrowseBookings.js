@@ -5,6 +5,7 @@ import { selectBookings } from '../store/bookings/selectors';
 import { browsebookings, cancelBookings } from '../store/bookings/thunks';
 import { useAuth } from '../hooks/useAuth';
 import { Link } from 'react-router-dom';
+import ReviewSitter from './ReviewSitter';
 
 
 const BrowseBookings = ({ userType }) => {
@@ -55,7 +56,9 @@ return (
                 >
                   Cancel Booking
                 </button>
-              )}
+             
+       
+        )}
             </div>
           </div>
         ))}
