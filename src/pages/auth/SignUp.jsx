@@ -18,7 +18,7 @@ export const SignUpPage = () => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 const handleCreateSignup = () => {
-    navigate("/login");
+    navigate("/signup");
   };
 
 
@@ -102,7 +102,7 @@ const handleCreateSignup = () => {
         </div>
          */}
          <button
-          type="text" onClick={handleCreateSignup}
+          type="submit" onClick={handleCreateSignup}
           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
         >
           Sign Up

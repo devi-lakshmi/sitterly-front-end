@@ -31,7 +31,7 @@ export const LogInPage = () => {
         console.log(res);
         const token = res.data.access_token;
         login(token);
-        navigate("/");
+        navigate("/home");
       })
       .catch((err) => {
         console.log(err);
@@ -42,7 +42,7 @@ export const LogInPage = () => {
   useEffect(() => {
     if (user) {
       console.log("User is logged in. Redirecting to home page...");
-      navigate("/");
+      navigate("/home");
     }
   }, [user, navigate]);
 
@@ -78,7 +78,7 @@ export const LogInPage = () => {
           />
         </div>
         <button 
-          type="text"
+          type="submit"
           className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700"
           
         >

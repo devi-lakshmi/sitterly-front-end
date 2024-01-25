@@ -1,8 +1,7 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./App.css";
-
-import { HomePage, LogInPage, SignUpPage} from "./pages";
+import { HomePage, LogInPage, SignUpPage } from "./pages";
 import ToRegister from "./pages/ToRegister";
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
 
@@ -12,6 +11,9 @@ import BrowseSitterProfiles from "./componets/BrowseSitterProfiles";
 import CreateBookings from "./componets/CreateBookings";
 import BrowseBookings from "./componets/BrowseBookings";
 import { useState } from "react";
+import WelcomePage from './pages/Welcomepage';
+import Header from './pages/Header';
+import { nanoid } from '@reduxjs/toolkit';
 
 function App() {
   const { user, logout } = useAuth();
@@ -49,6 +51,7 @@ function App() {
                 e.preventDefault();
                 logout();
                 navigate('/login');
+               
               }}
               className="hover:text-gray-300"
             >
@@ -56,13 +59,14 @@ function App() {
             </button>
           )}
         </div>
-      </header>
+      <Header  isAuthenticated={!!user}/> 
+       </header>
 <p className="text-2xl font-bold mb-50 text-blue-500">Welcome to Sitterly!</p>
        <ToastContainer />
       <main className="flex-grow">
         <Routes>
-          
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="/home" element={<HomePage />} />
           <Route path="/login" element={<LogInPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/createSitterProfile" element={<CreateSitterProfile />} />

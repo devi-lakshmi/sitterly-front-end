@@ -23,7 +23,7 @@ const CreateSitterProfile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createSitterProfile(sitterProfileData, api));
-    navigate("/");
+    navigate("/home");
   };
   const handleCreatePeofile = () => {
     dispatch(addProfile(sitterProfileData));

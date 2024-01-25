@@ -16,43 +16,60 @@ const BrowseBookings = ({ userType }) => {
   
     const bookings = useSelector(selectBookings);
     
-    console.log("bookingdata" + bookings)
     
      useEffect(() => {
         dispatch(browsebookings(api));
-    }, [dispatch, api]);
+     }, [dispatch, api]);
+  
+  
+     useEffect(() => {
+        dispatch(cancelBookings(api));
+     }, [dispatch, api]);
   
     const getUserTypeText = () => {
         return userRole;
   };
 const handleCancelBooking = (id) => {
     // Dispatch the cancelBooking action with the booking ID
-    dispatch(cancelBookings(id, api));
+  dispatch(cancelBookings(id, api));
+          
+
   };
 return (
-    <div className="max-w-lg mx-auto mt-8">
+    <div className="max-w-lg mx-auto mt-8 p-6 bg-yellow-100 rounded-md">
       <h2 className="text-2xl font-bold mb-4">Your Bookings</h2>
-      <ul className="space-y-4">
-            {bookings.map(booking => (
-                <li key={booking.id} className="bg-white p-4 rounded-md shadow-md">
-                    <strong className="block mb-2">Booked by: {getUserTypeText()}</strong>
-                    <p className="mb-2">Start Date: {booking.starts_at}</p>
-                    <p className="mb-2">End Date: {booking.ends_at}</p>
-                    <p className="mb-2">Description: {booking.description}</p>
-                    {booking.is_canceled ? <p className="text-red-500 font-bold">Booking Cancelled</p> : new Date(booking.starts_at) > currentDate && (
-                        <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
-                            onClick={() => handleCancelBooking(booking.id)}>Cancel Booking</button>
-          )}
-                    
-                
-          </li>
+     <div className="flex flex-wrap -mx-4">
+  {bookings.map((booking) => (
+    <div key={booking.id} className="w-full md:w-1/1 lg:w-1/2 xl:w-1/2 px-4 mb-4">
+      <div className="bg-white p-6 rounded-md shadow-md max-w-xs">
+              <strong className="block mb-4 text-mid">Booked by: {getUserTypeText()}</strong>
+              <p className="mb-2 text-lg">Start Date: {booking.starts_at}</p>
+              <p className="mb-2 text-sm">End Date: {booking.ends_at}</p>
+             
+              {booking.is_canceled ? (
+                <p className="text-red-500 font-bold text-sm">Booking Cancelled</p>
+              ) : new Date(booking.starts_at) > currentDate && (
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 text-sm"
+                  onClick={() => handleCancelBooking(booking.id)}
+                >
+                  Cancel Booking
+                </button>
+              )}
+            </div>
+          </div>
         ))}
-        </ul>
-         <Link to={"/"} className="bg-blue-500 text-white py-2 px-4 rounded">
-        Go to HomePage
-      </Link>
+      </div>
+      <div className="button-container flex space-x-4 mt-4">
+        <Link to={"/home"} className="bg-blue-500 text-white py-2 px-4 rounded">
+          Go to HomePage
+        </Link>
+        <Link to={"/getSitterProfiles"} className="bg-blue-500 text-white py-2 px-4 rounded">
+          Go to your booking page
+        </Link>
+      </div>
     </div>
-    
   );
 };
+
 export default BrowseBookings;
