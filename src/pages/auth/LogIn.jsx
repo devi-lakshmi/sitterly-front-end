@@ -46,31 +46,42 @@ export const LogInPage = () => {
   }, [user, navigate]);
 
   return (
-    <div>
-      <h1>Log In</h1>
-      {error && <div style={{ color: "red" }}>{error}</div>}
+    <div className="max-w-md mx-auto mt-8 p-4 bg-white rounded shadow-md">
+      <h1 className="text-2xl font-semibold mb-4">Log In</h1>
+      {error && <div className="text-red-500 mb-4">{error}</div>}
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email</label>
+        <div className="mb-4">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-600">
+            
+          </label>
           <input
             type="email"
             name="email"
             placeholder="Email"
             value={email}
             onChange={handleChange}
+            className="mt-1 p-2 border rounded w-full"
           />
         </div>
-        <div>
-          <label htmlFor="password">Password</label>
+        <div className="mb-4">
+          <label htmlFor="password" className="block text-sm font-medium text-gray-600">
+            
+          </label>
           <input
             type="password"
             name="password"
             placeholder="Password"
             value={password}
             onChange={handleChange}
+            className="mt-1 p-2 border rounded w-full"
           />
         </div>
-        <button type="submit">Log In</button>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700"
+        >
+          Log In
+        </button>
       </form>
     </div>
   );

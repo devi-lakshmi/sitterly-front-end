@@ -15,6 +15,7 @@ export class API {
   }
 
   post(path, data, config) {
+    
     return this.http.post(API_BASE_URL + path, data, config);
   }
 

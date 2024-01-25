@@ -20,6 +20,5 @@ export const useApi = () => {
       setApi(new API());
     }
   }, [token]);
-
   return api;
 };

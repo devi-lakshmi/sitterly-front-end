@@ -3,7 +3,7 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
 export const useAuth = () => {
-  const { currentUser, token, removeToken, storeToken, getCurrentUser } =
+  const { currentUser, token, userRole,removeToken, storeToken, getCurrentUser } =
     useContext(AuthContext);
   const [user, setUser] = useState(currentUser);
 
@@ -13,15 +13,17 @@ export const useAuth = () => {
 
   const logout = useCallback(() => {
     removeToken();
+    localStorage.removeItem("userRole"); 
     setUser(null);
   }, [removeToken]);
 
   const login = useCallback(
-    (newToken) => {
+    (newToken,role) => {
       storeToken(newToken);
+    localStorage.setItem("userRole", role);
     },
     [storeToken]
   );
 
-  return { user, token, logout, login, refetchUser: getCurrentUser };
+  return { user, token,userRole, logout, login, refetchUser: getCurrentUser };
 };
