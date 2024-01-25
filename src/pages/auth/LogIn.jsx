@@ -23,14 +23,15 @@ export const LogInPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError(null);
-
+   
+    
     api
       .post("/users/login", form)
       .then((res) => {
         console.log(res);
         const token = res.data.access_token;
         login(token);
-        navigate("/");
+        navigate("/home");
       })
       .catch((err) => {
         console.log(err);
@@ -41,7 +42,7 @@ export const LogInPage = () => {
   useEffect(() => {
     if (user) {
       console.log("User is logged in. Redirecting to home page...");
-      navigate("/");
+      navigate("/home");
     }
   }, [user, navigate]);
 
@@ -76,9 +77,10 @@ export const LogInPage = () => {
             className="mt-1 p-2 border rounded w-full"
           />
         </div>
-        <button
+        <button 
           type="submit"
           className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700"
+          
         >
           Log In
         </button>

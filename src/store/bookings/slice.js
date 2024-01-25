@@ -15,12 +15,12 @@ export const bookingsSlice = createSlice({
     addBooking: (state, action) => {
      return {
         ...state,
-        profiles: [...state.profiles, action.payload],
+        profiles: [...state.bookings, action.payload],
       };
     },
      cancelBooking: (state, action) => {
       const updatedBooking = action.payload;
-      const index = state.findIndex(booking => booking.id === updatedBooking.id);
+      const index = state.bookings.findIndex(booking => booking.id === updatedBooking.id);
 
       if (index !== -1) {
         state[index] = updatedBooking;

@@ -12,13 +12,13 @@ export function createSitterProfile(sitterProfileData, api) {
   }
 }
 
-export function browseSitterProfiles(api, page) {
+export function browseSitterProfiles(api, currentpage) {
   return async function thunk(dispatch) {
     
     try {
       const token = localStorage.getItem("sitterly_token");
      
-      const response = await api.get(`/getSitterProfiles/?page=${page}`, token);
+      const response = await api.get(`/getSitterProfiles/?page=${currentpage}`, token);
       console.log("browseSitterProfiles Response:")
       console.log(response)
       const sitterProfile = response.data
