@@ -4,12 +4,11 @@ import { useApi } from '../hooks/useApi';
 import { selectBookings } from '../store/bookings/selectors';
 import { browsebookings, cancelBookings } from '../store/bookings/thunks';
 import { useAuth } from '../hooks/useAuth';
-import ReviewSitter from './ReviewSitter';
 import { Link, useNavigate } from 'react-router-dom';
 
 
 
-const BrowseBookings = ({ userType }) => {
+const BrowseBookings = () => {
     const api = useApi();
   const { userRole } = useAuth();
     const navigate = useNavigate();
@@ -87,5 +86,6 @@ const handleReviewBooking = (bookingId) => {
     </div>
   );
 };
+
 
 export default BrowseBookings;

@@ -1,6 +1,6 @@
 import { addReview, setError, setLoading } from "./slice";
 
-export function createReviews(review, api) {
+export function createReview(review, api) {
     return async function thunk(dispatch) {
         try {
              dispatch(setLoading(true));

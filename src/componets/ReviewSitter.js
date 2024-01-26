@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useParams } from "react-router-dom";
 import { useApi } from "../hooks/useApi";
-import { selectError, selectLoading } from "../store/bookings/selectors";
-//import { setReviews } from "../store/reviews/slice";
-import { createReviews } from "../store/reviews/thunks";
+import { selectError, selectLoading, selectReviews } from "../store/reviews/selectors";
+import { createReview } from "../store/reviews/thunks";
 
 const ReviewSitter = () => {
 
@@ -13,7 +12,7 @@ const ReviewSitter = () => {
      const api = useApi();
      const dispatch = useDispatch();
     const isLoading = useSelector(selectLoading)
-     const error = useSelector(selectError)
+    const error = useSelector(selectError)
     const [review, setReviews] = useState({
      booking_id: bookingId,
     score: 0,
@@ -24,9 +23,9 @@ const ReviewSitter = () => {
     setReviews({ ...review, [event.target.name]: event.target.value });
   };
   
-    const handleSubmit = (e) => {
+    const handleReview = (e) => {
     e.preventDefault();
-    dispatch(createReviews( review, api))
+    dispatch(createReview( review, api))
       .then((response) => {
         toast.success('Review created sucessfully!');
         setReviews({
@@ -47,7 +46,7 @@ const ReviewSitter = () => {
     <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
       <h2 className="text-2xl font-bold mb-4">Review</h2>
       {error && <div className="text-red-500 mb-4"></div>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleReview}>
         <label className="block mb-4">
           message
           <input
@@ -72,14 +71,13 @@ const ReviewSitter = () => {
          <button 
           type="submit" 
           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mt-4"
-          disabled={isLoading} // Disable the button when loading
+          disabled={isLoading}
         >
           {isLoading ? 'Submitting...' : 'Submit Review'}
         </button> 
-        {/* <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mt-4">
-          Submit Review
-        </button> */}
       </form>
+   
+   
     </div>
   );
 };

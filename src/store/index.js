@@ -6,7 +6,7 @@ const store = configureStore({
     reducer: {
         sitterProfiles: sitterProfilesReducer,
         bookings:bookingsReducer,
-        reviwes:reviewsReducer,
+        reviews:reviewsReducer,
     },
 });
 

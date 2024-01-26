@@ -70,10 +70,14 @@ const BrowseSitterProfiles = () => {
   const loading = useSelector(selectIsLoading);
 
   const [currentPage, setCurrentPage] = useState(1);
+   const [cityFilter, setCityFilter] = useState('');
+  
+    
+
  useEffect(() => {
     const pageSize = 10; // Set your desired page size
     dispatch(browseSitterProfiles(api, currentPage, pageSize));
-  }, [dispatch, api, currentPage]);
+  }, [dispatch, api, currentPage, cityFilter]);
   const handleBookClick = (sitterId) => {
     navigate(`/createBookings/${sitterId}`);
   };
@@ -82,9 +86,23 @@ const BrowseSitterProfiles = () => {
     setCurrentPage((prevPage) => prevPage +1);
   };
 
+  const handleFilterChange = (event) => {
+    setCityFilter(event.target.value);
+  };
+ 
   return (
     <div className="bg-gray-200 p-4">
       <h2 className="text-2xl font-bold mb-4">Browse Sitter Profiles</h2>
+      <div className="mb-4">
+        <input
+          type="text"
+          value={cityFilter}
+          onChange={handleFilterChange}
+          placeholder="Filter by City"
+          className="border border-gray-400 rounded px-3 py-2"
+        />
+      </div>
+      
       {loading && <p>Loading...</p>}
       <div className="flex flex-wrap -mx-4">
         {sitterProfiles.map((profile) => (
