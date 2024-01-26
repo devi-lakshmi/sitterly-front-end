@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 import { useApi } from '../hooks/useApi';
 import {  useParams } from 'react-router-dom';
 import { createBooking } from '../store/bookings/thunks';
-import { Link } from 'react-router-dom';
 import { selectError, selectLoading } from '../store/bookings/selectors';
 
 const CreateBookings = () => {
@@ -76,12 +75,6 @@ const CreateBookings = () => {
           >
             {isLoading ? 'Booking...' : 'Book Sitter'}
           </button>
-          <Link to="/getSitterProfiles" className="bg-blue-200 text-black py-1 px-2 rounded-md hover:bg-purple-600">
-            Go to Sitter Profile Page
-          </Link>
-          <Link to="/bookings" className="bg-blue-200 text-black py-1 px-2 rounded-md hover:bg-purple-600">
-            Go to Your Booking Page
-          </Link>
         </div>
       </form>
     </div>
