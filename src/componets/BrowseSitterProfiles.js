@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoading, selectSitterProfiles } from '../store/sitterProfiles/selectors';
+import { selectIsLoading, selectSitterProfiles,selectCityFilter } from '../store/sitterProfiles/selectors';
 import { browseSitterProfiles } from '../store/sitterProfiles/thunks';
 import { useApi } from "../hooks/useApi";
 import { useNavigate } from 'react-router-dom';
+import { setCityfilter } from '../store/sitterProfiles/slice';
 
 const BrowseSitterProfiles = () => {
   const api = useApi();
@@ -12,16 +13,17 @@ const BrowseSitterProfiles = () => {
 
   const sitterProfiles = useSelector(selectSitterProfiles);
   const loading = useSelector(selectIsLoading);
-
+  const cityFilter = useSelector(selectCityFilter) || "";
   const [currentPage, setCurrentPage] = useState(1);
-   const [cityFilter, setCityFilter] = useState('');
+   
   
     
 
  useEffect(() => {
     const pageSize = 10; // Set your desired page size
-    dispatch(browseSitterProfiles(api, currentPage, pageSize));
-  }, [dispatch, api, currentPage, cityFilter]);
+    dispatch(browseSitterProfiles(api, currentPage, pageSize,cityFilter));
+  }, [dispatch, api, currentPage,cityFilter]);
+    
   const handleBookClick = (sitterId) => {
     navigate(`/createBookings/${sitterId}`);
   };
@@ -31,7 +33,8 @@ const BrowseSitterProfiles = () => {
   };
 
   const handleFilterChange = (event) => {
-    setCityFilter(event.target.value);
+  dispatch(setCityfilter(event.target.value));
+ console.log(event.target.value)
   };
  
   return (
@@ -49,7 +52,9 @@ const BrowseSitterProfiles = () => {
       
       {loading && <p>Loading...</p>}
       <div className="flex flex-wrap -mx-4">
-        {sitterProfiles.map((profile) => (
+        {sitterProfiles
+          .filter((profile) => !cityFilter || profile.city.toLowerCase().includes(cityFilter.toLowerCase()))
+          .map((profile) => (
           <div key={profile.id} className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 px-4 mb-4">
             <div className="bg-white p-4">
               <p className="font-bold">FirstName: {profile.first_name}</p>

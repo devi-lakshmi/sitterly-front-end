@@ -5,3 +5,11 @@ export const selectSitterProfiles = (reduxState) =>
 export const selectIsLoading = (reduxState) => {
     return reduxState.sitterProfiles.isLoading;
 }
+export const selectError = (reduxState) => {
+    return reduxState.sitterProfiles.error;
+
+}
+
+export const selectCityFilter = (reduxState) => {
+    return reduxState.sitterProfiles.cityfilter;
+}

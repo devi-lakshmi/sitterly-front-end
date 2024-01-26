@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useParams } from "react-router-dom";
 import { useApi } from "../hooks/useApi";
-import { selectError, selectLoading, selectReviews } from "../store/reviews/selectors";
+import { selectError, selectLoading } from "../store/reviews/selectors";
 import { createReview } from "../store/reviews/thunks";
 
 const ReviewSitter = () => {
