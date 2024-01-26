@@ -6,8 +6,6 @@ import { browsebookings, cancelBookings } from '../store/bookings/thunks';
 import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
-
-
 const BrowseBookings = () => {
     const api = useApi();
   const { userRole } = useAuth();
@@ -55,24 +53,24 @@ const handleReviewBooking = (bookingId) => {
                             <strong className="block mb-4 text-mid">Booked by: {getUserTypeText()}</strong>
                             <p className="mb-2 text-lg">Start Date: {booking.starts_at}</p>
                             <p className="mb-2 text-sm">End Date: {booking.ends_at}</p>
-                            {booking.is_canceled ? (
-                                <p className="text-red-500 font-bold text-sm">Booking Cancelled</p>
-                            ) : new Date(booking.starts_at) > currentDate && (
-                                <div className="flex space-x-4"> {/* Flex container */}
-                                    <button
-                                        className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 text-sm"
-                                        onClick={() => handleCancelBooking(booking.id)}
-                                    >
-                                        Cancel Booking
-                                    </button>
-                                    <button
-                                        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 text-sm"
-                                        onClick={() => handleReviewBooking(booking.id)}
-                                    >
-                                        Review Booking
-                                    </button>
-                                </div>
-                            )}
+                      {booking.is_canceled ? (
+                        <p className="text-red-500 font-bold text-sm">Booking Cancelled</p>
+                      ) : new Date(booking.ends_at) > currentDate ? (
+                        <div className="flex space-x-4"> {/* Flex container */}
+                          <button
+                            className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 text-sm"
+                            onClick={() => handleCancelBooking(booking.id)}
+                          >
+                            Cancel Booking
+                          </button>
+                                    
+                        </div>
+                      ) : (<button
+                        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 text-sm"
+                        onClick={() => handleReviewBooking(booking.id)}
+                      >
+                        Review Booking
+                      </button>)}
                         </div>
                     </div>
                 ))}
