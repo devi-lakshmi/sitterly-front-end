@@ -53,10 +53,10 @@ export function cancelBookings(id, api) {
       dispatch(setLoading(true));
       const token = localStorage.getItem("sitterly_token");
      
-        const response = await api.put(`/cancelMyBooking/${id}`, token);
-        const updatedBooking = response.data;
-        
-        dispatch(cancelBooking(updatedBooking));
+         await api.put(`/cancelMyBooking/${id}`, token);
+       dispatch(cancelBooking(id));
+      const response = await api.get("/bookings", token);
+      dispatch(setBookings(response.data));
     }
     catch (error) {
       console.error('Error canceling booking:', error);

@@ -5,10 +5,9 @@ export function createReviews(review, api) {
         try {
              dispatch(setLoading(true));
           const token = localStorage.getItem("sitterly_token");
-            const response = await api.post("/reviews", review, token);
-            const createReview = response.data
-            dispatch(addReview(review));
-            return createReview;
+          const response = await api.post("/reviews", review, token);
+           dispatch(addReview(response.data));
+            
         }
   catch (error) {
       console.error('Error reviews:', error);

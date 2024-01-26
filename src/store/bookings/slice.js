@@ -18,15 +18,13 @@ export const bookingsSlice = createSlice({
         profiles: [...state.bookings, action.payload],
       };
     },
-     cancelBooking: (state, action) => {
-      const updatedBooking = action.payload;
-      const index = state.bookings.findIndex(booking => booking.id === updatedBooking.id);
-     
-       if (index !== -1) {
-       
-        state.bookings[index].is_canceled = true; 
-         
-      }
+    cancelBooking: (state, action) => {
+      console.log("cancelBooking slice");
+        
+      const canceledBookingId = action.payload;
+      state.bookings = state.bookings.map((booking) =>
+        booking.id === canceledBookingId ? { ...booking, is_canceled: true } : booking
+      );
     },
     setError: (state, action) => {
       state.error = action.payload;

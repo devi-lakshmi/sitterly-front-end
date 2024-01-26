@@ -35,7 +35,7 @@ const BrowseBookings = ({ userType }) => {
   };
 const handleCancelBooking = (id) => {
     // Dispatch the cancelBooking action with the booking ID
-  dispatch(cancelBookings(id, api));
+  dispatch(cancelBookings(id,api));
   };
 const handleReviewBooking = (bookingId) => {
     // Dispatch the cancelBooking action with the booking ID
