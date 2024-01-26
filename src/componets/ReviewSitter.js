@@ -3,24 +3,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useParams } from "react-router-dom";
 import { useApi } from "../hooks/useApi";
-import { selectLoading } from "../store/reviews/selectors";
-import { selectError } from "../store/bookings/selectors";
-import { setReviews } from "../store/reviews/slice";
+import { selectError, selectLoading } from "../store/bookings/selectors";
+//import { setReviews } from "../store/reviews/slice";
 import { createReviews } from "../store/reviews/thunks";
 
 const ReviewSitter = () => {
-  
-//    const isLoading = useSelector(selectLoading)
-//   const error = useSelector(selectError)
-    const { booking } = useParams();
+
+    const { bookingId } = useParams();
      const api = useApi();
-    const dispatch = useDispatch();
-     const isLoading = useSelector(selectLoading)
-  const error = useSelector(selectError)
+     const dispatch = useDispatch();
+    const isLoading = useSelector(selectLoading)
+     const error = useSelector(selectError)
     const [review, setReviews] = useState({
-     score: 0,
+     booking_id: bookingId,
+    score: 0,
      message: "",
-    booking_id:booking.booking_id,
+  
   });
    const handleInputChange = (event) => {
     setReviews({ ...review, [event.target.name]: event.target.value });
@@ -29,27 +27,60 @@ const ReviewSitter = () => {
     const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createReviews( review, api))
-    .then((response) => {
-         // If the promise resolves without an error, display success toast
-         toast.success('Review created sucessfully!');
-         // Optionally, clear the form data after successful booking
-         setReviews({
-             score: 0,
+      .then((response) => {
+        toast.success('Review created sucessfully!');
+        setReviews({
+           booking_id: bookingId,
+            score: 0,
              message: "",
-             booking_id: booking.booking_id,
+           
          });
 
-    })
-        .catch((error) => {
-      // If there's an error in the booking process, display error toast
+      })
+    .catch((error) => {
       console.error('Error while review:', error);
       toast.error('review failed. Please try again.');
     });
-};return (
-    <form onSubmit={handleSubmit}>
-      <textarea value={review} onChange= {handleInputChange} />
-      <button type="submit">Submit Review</button>
-    </form>
+  };
+  
+  return (
+    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
+      <h2 className="text-2xl font-bold mb-4">Review</h2>
+      {error && <div className="text-red-500 mb-4"></div>}
+      <form onSubmit={handleSubmit}>
+        <label className="block mb-4">
+          message
+          <input
+            type="text"
+           value={review.message} 
+           onChange={handleInputChange} 
+            name="message"
+           placeholder="Enter your review message"
+           className="w-full p-2 border rounded"
+        />
+        </label>
+          <label className="block mb-4">
+          Score:
+          <input
+            type="number"
+            value={review.score}
+            onChange={handleInputChange}
+            name="score"
+            className="mt-1 p-2 border rounded-md w-full"
+          />
+        </label>
+         <button 
+          type="submit" 
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mt-4"
+          disabled={isLoading} // Disable the button when loading
+        >
+          {isLoading ? 'Submitting...' : 'Submit Review'}
+        </button> 
+        {/* <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mt-4">
+          Submit Review
+        </button> */}
+      </form>
+    </div>
   );
 };
 export default ReviewSitter;

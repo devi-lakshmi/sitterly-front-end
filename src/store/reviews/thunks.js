@@ -3,11 +3,12 @@ import { addReview, setError, setLoading } from "./slice";
 export function createReviews(review, api) {
     return async function thunk(dispatch) {
         try {
-           const token = localStorage.getItem("sitterly_token");
+             dispatch(setLoading(true));
+          const token = localStorage.getItem("sitterly_token");
             const response = await api.post("/reviews", review, token);
-            const reviews = response.data
-            dispatch(addReview(reviews));
-            return response.data
+            const createReview = response.data
+            dispatch(addReview(review));
+            return createReview;
         }
   catch (error) {
       console.error('Error reviews:', error);

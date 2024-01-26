@@ -13,7 +13,8 @@ import BrowseBookings from "./componets/BrowseBookings";
 import { useState } from "react";
 import WelcomePage from './pages/Welcomepage';
 import Header from './pages/Header';
-import { nanoid } from '@reduxjs/toolkit';
+import ReviewSitter from './componets/ReviewSitter';
+
 
 function App() {
   const { user, logout } = useAuth();
@@ -73,7 +74,7 @@ function App() {
           <Route path="/getSitterProfiles" element={<BrowseSitterProfiles />} />
           <Route path="/createBookings/:sitterId" element={<CreateBookings />} />
          <Route path="/bookings" element={<BrowseBookings />} />
-         
+         <Route path="/reviews/:bookingId" element={<ReviewSitter/>} />
       </Routes>
       
       </main>

@@ -21,15 +21,18 @@ export const bookingsSlice = createSlice({
      cancelBooking: (state, action) => {
       const updatedBooking = action.payload;
       const index = state.bookings.findIndex(booking => booking.id === updatedBooking.id);
-
-      if (index !== -1) {
-        state[index] = updatedBooking;
+     
+       if (index !== -1) {
+       
+        state.bookings[index].is_canceled = true; 
+         
       }
     },
     setError: (state, action) => {
       state.error = action.payload;
     },
     setLoading: (state, action) => {
+      console.log("setLoading");
       state.isLoading = action.payload;
     },
     

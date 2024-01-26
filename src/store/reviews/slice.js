@@ -12,7 +12,10 @@ export const reviewsSlice = createSlice({
       state.reviews = action.payload;
     },
     addReview: (state, action) => {
-      state.reviews.push(action.payload);
+     return {
+        ...state,
+        pofiles: [...state.reviews, action.payload],
+      };
     //     return {
     
     //      // ...state,

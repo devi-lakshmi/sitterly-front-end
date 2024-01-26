@@ -1,9 +1,9 @@
 export const selectReviews = (reduxState) => {
-    return reduxState.reviews.reviewss;
+    return reduxState.reviews.reviews;
 
 }
 export const selectLoading = (reduxState) => {
-    return reduxState.reviewss.isLoading;
+    return reduxState.reviews.isLoading;
 
 }
 export const selectError = (reduxState) => {
