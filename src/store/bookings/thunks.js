@@ -3,12 +3,13 @@ import { addBooking,setBookings ,cancelBooking,setError,setLoading} from "./slic
 
 export function createBooking(booking, api) {
     return async function thunk(dispatch) {
-        try {
+      try {
+            dispatch(setLoading(true));
            const token = localStorage.getItem("sitterly_token");
             const response = await api.post("/createBookings", booking, token);
             const booking1 = response.data
             dispatch(addBooking(booking1));
-            return response.data
+            return booking1;
         }
   catch (error) {
       console.error('Error booking sitter:', error);
@@ -26,6 +27,7 @@ export function browsebookings(api) {
   return async function thunk(dispatch) {
     
     try {
+       dispatch(setLoading(true));
       const token = localStorage.getItem("sitterly_token");
      
       const response = await api.get("/bookings", token);
@@ -51,10 +53,10 @@ export function cancelBookings(id, api) {
       dispatch(setLoading(true));
       const token = localStorage.getItem("sitterly_token");
      
-        const response = await api.put(`/cancelMyBooking/${id}`, token);
-        const updatedBooking = response.data;
-        
-        dispatch(cancelBooking(updatedBooking));
+         await api.put(`/cancelMyBooking/${id}`, token);
+       dispatch(cancelBooking(id));
+      const response = await api.get("/bookings", token);
+      dispatch(setBookings(response.data));
     }
     catch (error) {
       console.error('Error canceling booking:', error);

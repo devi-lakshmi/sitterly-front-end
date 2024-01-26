@@ -30,9 +30,7 @@ const CreateBookings = () => {
   e.preventDefault();
   dispatch(createBooking(form, api))
     .then((response) => {
-      // If the promise resolves without an error, display success toast
       toast.success('Booking successful!');
-      // Optionally, clear the form data after successful booking
       setForm({
         sitter_profile_id: sitterId,
         is_cancelled: false,
@@ -41,7 +39,6 @@ const CreateBookings = () => {
       });
     })
     .catch((error) => {
-      // If there's an error in the booking process, display error toast
       console.error('Error while booking:', error);
       toast.error('Booking failed. Please try again.');
     });
@@ -75,7 +72,7 @@ const CreateBookings = () => {
           <button
             type="submit"
             className="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600"
-            disabled={isLoading} // Disable button while loading
+            disabled={isLoading} 
           >
             {isLoading ? 'Booking...' : 'Book Sitter'}
           </button>

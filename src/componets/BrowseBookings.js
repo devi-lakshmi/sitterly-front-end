@@ -4,12 +4,15 @@ import { useApi } from '../hooks/useApi';
 import { selectBookings } from '../store/bookings/selectors';
 import { browsebookings, cancelBookings } from '../store/bookings/thunks';
 import { useAuth } from '../hooks/useAuth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
-const BrowseBookings = ({ userType }) => {
+
+const BrowseBookings = () => {
     const api = useApi();
-    const { userRole } = useAuth();
+  const { userRole } = useAuth();
+    const navigate = useNavigate();
+
      const currentDate = new Date();
 
     const dispatch = useDispatch();
@@ -31,11 +34,15 @@ const BrowseBookings = ({ userType }) => {
   };
 const handleCancelBooking = (id) => {
     // Dispatch the cancelBooking action with the booking ID
-  dispatch(cancelBookings(id, api));
-          
-
+  dispatch(cancelBookings(id,api));
   };
-return (
+const handleReviewBooking = (bookingId) => {
+    // Dispatch the cancelBooking action with the booking ID
+    // dispatch(cancelBookings(bookingId, api));
+   navigate(`/reviews/${bookingId}`);
+  };
+
+  return (
     <div className="max-w-lg mx-auto mt-8 p-6 bg-yellow-100 rounded-md">
       <h2 className="text-2xl font-bold mb-4">Your Bookings</h2>
      <div className="flex flex-wrap -mx-4">
@@ -54,14 +61,22 @@ return (
                   onClick={() => handleCancelBooking(booking.id)}
                 >
                   Cancel Booking
-                </button>
-              )}
-            </div>
+              </button>      
+        )}
+         <button
+                  className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 text-sm"
+                  onClick={() => handleReviewBooking(booking.id)}
+                >
+                  Review Booking
+            </button>
+                    
+          </div>
           </div>
         ))}
       </div>
       <div className="button-container flex space-x-4 mt-4">
-        <Link to={"/home"} className="bg-blue-500 text-white py-2 px-4 rounded">
+        <Link to ={"/reviews"}>Reviews</Link>
+      <Link to={"/home"} className="bg-blue-500 text-white py-2 px-4 rounded">
           Go to HomePage
         </Link>
         <Link to={"/getSitterProfiles"} className="bg-blue-500 text-white py-2 px-4 rounded">
@@ -71,5 +86,6 @@ return (
     </div>
   );
 };
+
 
 export default BrowseBookings;
