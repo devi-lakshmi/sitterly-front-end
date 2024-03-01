@@ -45,6 +45,7 @@ export function browsebookings(api) {
     }
   }
 };
+
 export function cancelBookings(id, api) {
   return async function thunk(dispatch) {
     

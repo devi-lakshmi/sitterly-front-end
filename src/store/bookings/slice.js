@@ -5,6 +5,7 @@ export const bookingsSlice = createSlice({
   name: 'bookings',
   initialState: {
     bookings: [],
+    reviewedBookings: [],
     isLoading: false,
       error: null,
   },
@@ -26,6 +27,10 @@ export const bookingsSlice = createSlice({
         booking.id === canceledBookingId ? { ...booking, is_canceled: true } : booking
       );
     },
+    markBookingAsReviewed(state, action) {
+      const bookingId = action.payload;
+      state.reviewedBookings.push(bookingId);
+    },
     setError: (state, action) => {
       state.error = action.payload;
     },
@@ -37,5 +42,5 @@ export const bookingsSlice = createSlice({
     },
 });
 
-export const { setBookings, addBooking, cancelBooking, setError, setLoading  } = bookingsSlice.actions;
+export const { setBookings, addBooking, cancelBooking, setError, setLoading,markBookingAsReviewed } = bookingsSlice.actions;
 export default bookingsSlice.reducer;

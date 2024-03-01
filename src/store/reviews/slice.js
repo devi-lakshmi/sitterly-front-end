@@ -12,12 +12,8 @@ export const reviewsSlice = createSlice({
       state.reviews = action.payload;
     },
     addReview: (state, action) => {
-      return {
-    
-          ...state,
-         reviews: [...state.reviews, action.payload],
-          };
-    },
+      state.reviews.push(action.payload);
+},
     setError: (state, action) => {
       state.error = action.payload;
     },

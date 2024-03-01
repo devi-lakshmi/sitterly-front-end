@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useApi } from "../hooks/useApi";
 import { selectError, selectLoading } from "../store/reviews/selectors";
 import { createReview } from "../store/reviews/thunks";
+// import { markBookingAsReviewed } from "../store/bookings/slice";
 
 const ReviewSitter = () => {
 
@@ -12,8 +13,10 @@ const ReviewSitter = () => {
      const api = useApi();
      const dispatch = useDispatch();
     const isLoading = useSelector(selectLoading)
-    const error = useSelector(selectError)
-    const [review, setReviews] = useState({
+  const error = useSelector(selectError)
+  
+    
+  const [review, setReviews] = useState({
      booking_id: bookingId,
     score: 0,
      message: "",
@@ -22,12 +25,13 @@ const ReviewSitter = () => {
    const handleInputChange = (event) => {
     setReviews({ ...review, [event.target.name]: event.target.value });
   };
-  
+    
     const handleReview = (e) => {
     e.preventDefault();
     dispatch(createReview( review, api))
       .then((response) => {
         toast.success('Review created sucessfully!');
+        // dispatch(markBookingAsReviewed(bookingId));
         setReviews({
            booking_id: bookingId,
             score: 0,
@@ -46,6 +50,8 @@ const ReviewSitter = () => {
     <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
       <h2 className="text-2xl font-bold mb-4">Review</h2>
       {error && <div className="text-red-500 mb-4"></div>}
+      <p className="mb-2 text-lg">Booking Id: {bookingId}</p>
+
       <form onSubmit={handleReview}>
         <label className="block mb-4">
           message

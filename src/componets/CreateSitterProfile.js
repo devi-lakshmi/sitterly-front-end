@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { createSitterProfile } from '../store/sitterProfiles/thunks';
@@ -11,6 +11,7 @@ const CreateSitterProfile = () => {
   const dispatch = useDispatch();
   const error = useSelector(selectError)
   const isLoading = useSelector(selectIsLoading)
+
   const [sitterProfileData, setSitterProfileData] = useState({
     first_name: '',
     last_name: '',
@@ -33,14 +34,16 @@ const CreateSitterProfile = () => {
           hourly_rate_euro: 0,
         });
       })
-  .catch((error) => {
-      console.error('Error while create  profile:', error);
-      toast.error('create failed. Please try again.');
-    });
+      .catch((error) => {
+        console.error('Error while create  profile:', error);
+        toast.error('create failed. Please try again.');
+      });
   };
   const handleCreatePeofile = () => {
     dispatch(addProfile(sitterProfileData));
   };
+
+
   return (
     <div className="bg-gray-200 p-4">
       <h2 className="text-2xl font-bold mb-4">Create Sitter Profile</h2>
@@ -99,9 +102,9 @@ const CreateSitterProfile = () => {
           type="submit"
           onClick={handleCreatePeofile}
           className="bg-blue-500 text-white py-2 px-4 rounded"
-        disabled={isLoading}
+          disabled={isLoading}
         >
-         {isLoading ? 'Submitting...' : 'Submit'}
+          {isLoading ? 'Submitting...' : 'Submit'}
           Submit
         </button >
       </form>

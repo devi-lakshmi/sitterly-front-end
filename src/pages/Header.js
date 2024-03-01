@@ -6,11 +6,12 @@ const Header = ({ isAuthenticated }) => {
   return (
     <nav>
       <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
+
         {isAuthenticated && (
           <>
+            <li>
+              <Link to="/"></Link>
+            </li>
             <li>
               <Link to="/createSitterProfile">Create Sitter Profile</Link>
             </li>
@@ -20,9 +21,12 @@ const Header = ({ isAuthenticated }) => {
             <li>
               <Link to="/bookings">Browse Bookings</Link>
             </li>
+
           </>
         )}
+
       </ul>
+
     </nav>
   );
 };

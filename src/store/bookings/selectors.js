@@ -14,3 +14,7 @@ export const selectCancel = (reduxState) => {
     return reduxState.bookings.isCancelled;
 
 }
+export const selectReviewedBookings = (reduxState) => {
+    return reduxState.bookings.reviewedBookings;
+
+}

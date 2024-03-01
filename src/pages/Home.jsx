@@ -1,21 +1,13 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useApi } from "../hooks/useApi";
-import { useAuth } from "../hooks/useAuth";
+
 import  Header  from "./Header";
 
 
 export const HomePage = () => {
-  const { userRole} = useAuth();
-  const api = useApi();
-
-  
-  
- return (
+  return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
-    
-     <Header/>
+    <Header/>
       <div className="flex-grow p-8">
-        <p className="text-4xl font-bold mb-4">Welcome to Sitterly!</p>
+         {/* <p className="text-4xl font-bold mb-4">Welcome to HomePage</p>  */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="bg-white p-6 rounded-md shadow-md">
             <img
