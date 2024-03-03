@@ -25,8 +25,9 @@ As a Sitter, I can Review the Parent/Owner after a Booking.
 # City Filter 
  As a User, I can filter SitterProfiles on their City.
 
-Pre requisites
+# Pre requisites
 
+This application required to connect backend, You can get it from https://github.com/devi-lakshmi/sitterly-backend
 
 # To install
 $ npm install
