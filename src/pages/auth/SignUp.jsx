@@ -13,7 +13,7 @@ export const SignUpPage = () => {
     role: "sitter",
   });
 
-  const { email, password ,role} = form;
+  const { email, password } = form;
 
   const handleChange = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
