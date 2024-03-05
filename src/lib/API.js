@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://127.0.0.1:8000";
+const API_BASE_URL = "https://sitterly-backend.onrender.com";
 
 export class API {
   http = axios;
@@ -15,7 +15,7 @@ export class API {
   }
 
   post(path, data, config) {
-    
+
     return this.http.post(API_BASE_URL + path, data, config);
   }
 
