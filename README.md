@@ -37,7 +37,10 @@ $ npm start
 
  Compiled successfully!
 
- You can now view sitterly in the browser.
+ You can now view sitterly in the local browser.
 
   Local:            http://localhost:3000/
   On Your Network:  http://192.168.1.54:3000/
+  
+# Access to deployed sitterly on Netlify
+https://baby-sitterly-app.netlify.app
