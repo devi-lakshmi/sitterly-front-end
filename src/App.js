@@ -66,7 +66,7 @@ function App() {
     //       <Header isAuthenticated={!!user} />
 
 
-    <section className="sm:max-lg:bg-blue-500 md:grid-cols-1 md:items-center md:text-left sm:max-xl:p-9  gap-8">
+    <section className="sm:max-lg: md:grid-cols-1 md:items-center md:text-left sm:max-xl:p-9  gap-8">
       <div className="App min-h-screen flex flex-col">
         <header className="bg-teal-400 text-black p-4 flex  justify-between items-center">
           <div className="flex space-between items-row ">
