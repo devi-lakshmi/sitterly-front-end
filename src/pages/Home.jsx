@@ -4,7 +4,7 @@ import  Header  from "./Header";
 
 export const HomePage = () => {
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col">
+    <div className="bg-gray-100 min-h-screen flex flex-row justify-between">
     <Header/>
       <div className="flex-grow p-8">
          {/* <p className="text-4xl font-bold mb-4">Welcome to HomePage</p>  */}

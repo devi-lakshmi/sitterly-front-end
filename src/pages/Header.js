@@ -9,19 +9,20 @@ const Header = ({ isAuthenticated }) => {
 
         {isAuthenticated && (
           <>
-            <li>
-              <Link to="/"></Link>
-            </li>
-            <li>
-              <Link to="/createSitterProfile">Create Sitter Profile</Link>
-            </li>
-            <li>
-              <Link to="/getSitterProfiles">Browse Sitter Profiles</Link>
-            </li>
-            <li>
-              <Link to="/bookings">Browse Bookings</Link>
-            </li>
-
+            <div className="flex space-x-4 sm:flex-row" >
+              <li>
+                <Link to="/"></Link>
+              </li>
+              <li>
+                <Link className="hover:text-purple-500" to="/createSitterProfile">CreateSitterProfile</Link>
+              </li>
+              <li>
+                <Link className="hover:text-purple-600" to="/getSitterProfiles">BrowseSitterProfiles</Link>
+              </li>
+              <li>
+                <Link className="hover:text-purple-600" to="/bookings">BrowseBookings</Link>
+              </li>
+            </div>
           </>
         )}
 
