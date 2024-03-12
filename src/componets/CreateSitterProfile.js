@@ -56,7 +56,7 @@ const CreateSitterProfile = () => {
 
   return (
     <section className='max-w-xl mx-auto p-4 bg-stone-900  mt-4 rounded shadow-md'>
-      <h2 className="text-2xl  text-gray-100 font-bold mb-4">  Create Sitter Profile S </h2>
+      <h2 className="text-2xl  text-gray-100 font-bold mb-4">  Create Sitter Profile  </h2>
       <div className="w-full bg-stone-900 max-w-lg mt-0 p-6 px-6 py-6 rounded-lg">
 
         {error && <div className="text-red-500 mb-4">{error}</div>}
