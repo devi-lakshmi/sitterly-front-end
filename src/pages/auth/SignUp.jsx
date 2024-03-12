@@ -2,7 +2,6 @@ import { useApi } from "../../hooks/useApi";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-
 export const SignUpPage = () => {
   const api = useApi();
   const navigate = useNavigate();
@@ -43,8 +42,10 @@ const handleCreateSignup = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-4 bg-white rounded shadow-md">
-      <h1 className="text-2xl font-semibold mb-4">Sign Up</h1>
+    <div className="bg-black rounded shadow-md max-w-lg p-4">
+     
+      <h1 className="text-2xl font-semibold text-white mb-4">Sign Up</h1>
+      
       <form onSubmit={handleSubmit}>
         {error && <div className="text-red-500 mb-4">{error}</div>}
         <div className="mb-4">
