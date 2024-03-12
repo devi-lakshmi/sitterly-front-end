@@ -35,6 +35,7 @@ const CreateSitterProfile = () => {
       .then((response) => {
         toast.success('Profile created successfully!');
         navigate('/browseSitterProfiles');
+        navigate('/home')
         setSitterProfileData({
           first_name: '',
           last_name: '',
@@ -54,9 +55,10 @@ const CreateSitterProfile = () => {
 
 
   return (
-    <section className='flex justify-center items-center max-xl h-full'>
-      <div className="w-full bg-stone-900 max-w-lg mt-8 p-6 px-6 py-6 rounded-lg">
-        <h2 className="text-2xl  text-purple-500 font-bold mb-4">Create Sitter Profile</h2>
+    <section className='max-w-xl mx-auto p-4 bg-stone-900  mt-4 rounded shadow-md'>
+      <h2 className="text-2xl  text-gray-100 font-bold mb-4">  Create Sitter Profile S </h2>
+      <div className="w-full bg-stone-900 max-w-lg mt-0 p-6 px-6 py-6 rounded-lg">
+
         {error && <div className="text-red-500 mb-4">{error}</div>}
         <form onSubmit={handleSubmit} className="max-w-lg ">
           <label className="block mb-2">
@@ -67,7 +69,7 @@ const CreateSitterProfile = () => {
               placeholder="First Name"
               value={sitterProfileData.first_name}
               onChange={handleInputChange}
-              className="form-input mt-1 block w-full"
+              className="form-input  border mt-1 block w-full"
             />
           </label>
 
@@ -79,7 +81,7 @@ const CreateSitterProfile = () => {
               placeholder="Last Name"
               value={sitterProfileData.last_name}
               onChange={handleInputChange}
-              className="form-input mt-1 block w-full "
+              className="form-input border mt-1 block w-full "
             />
           </label>
 
@@ -91,7 +93,7 @@ const CreateSitterProfile = () => {
               placeholder="City"
               value={sitterProfileData.city}
               onChange={handleInputChange}
-              className="form-input mt-1 block w-full"
+              className="form-input border mt-1 block w-full"
             />
           </label>
 
@@ -99,12 +101,11 @@ const CreateSitterProfile = () => {
 
             <input
               type="number"
-              step=""
               name="hourly_rate_euro"
               placeholder="Hourly Rate euro"
               value={sitterProfileData.hourly_rate_euro}
               onChange={handleInputChange}
-              className="form-input mt-1 block w-full"
+              className="form-input border mt-1 block w-full"
               min="0"
             />
           </label>
@@ -112,7 +113,7 @@ const CreateSitterProfile = () => {
           <button
             type="submit"
             onClick={handleCreatePeofile}
-            className="bg-amber-700 text-white py-2 px-4  hover:bg-purple-600 rounded"
+            className="bg-sky-500  text-white py-2 px-4 w-full hover:bg-purple-600 rounded"
             disabled={isLoading}
           >
             {isLoading ? 'Submitting...' : 'Submit'}

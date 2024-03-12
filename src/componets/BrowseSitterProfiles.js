@@ -38,8 +38,8 @@ const BrowseSitterProfiles = () => {
   };
 
   return (
-    <div className="bg-gray-200 p-4">
-      <h2 className="text-2xl font-bold mb-4">Browse Sitter Profiles</h2>
+    <div className="bg-yellow-100  p-4">
+      <h2 className="text-2xl font-bold text-purple-600 mb-4">Browse Sitter Profiles</h2>
       <div className="mb-4">
         <input
           type="text"
@@ -63,7 +63,7 @@ const BrowseSitterProfiles = () => {
                 <p>HourlyRateeuro: {profile.hourly_rate_euro}</p>
                 <button
                   onClick={() => handleBookClick(profile.id)}
-                  className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                  className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-lime-400"
                 >
                   Book sitter
                 </button>
@@ -74,7 +74,7 @@ const BrowseSitterProfiles = () => {
       <div className="mt-4">
         <button
           onClick={handleNextPage}
-          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-purple-600"
         >
           Next Page
         </button>

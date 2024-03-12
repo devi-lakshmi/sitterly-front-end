@@ -3,7 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./App.css";
 import { HomePage, LogInPage, SignUpPage } from "./pages";
 import ToRegister from "./pages/ToRegister";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth";
 import CreateSitterProfile from "./componets/CreateSitterProfile";
 import BrowseSitterProfiles from "./componets/BrowseSitterProfiles";
@@ -18,6 +18,7 @@ import ReviewSitter from './componets/ReviewSitter';
 function App() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [showRegisterPopup, setShowRegisterPopup] = useState(false);
 
@@ -29,41 +30,78 @@ function App() {
     setShowRegisterPopup(false);
 
   };
-
+  const isWelcomeOrHomePage = () => {
+    return location.pathname === '/' || location.pathname === '/home';
+  };
   return (
-    <section className="sm:max-lg:bg-blue-50 md:grid-cols-1 md:items-center md:text-left sm:max-xl:p-9 grid gap-8">
+    // <section className="sm:max-lg:bg-blue-500 md:grid-cols-1 md:items-center md:text-left sm:max-xl:p-9  gap-8">
+    //   <div className="App min-h-screen flex flex-col">
+    //     <header className="bg-teal-400 text-black p-4 flex  justify-between items-center">
+    //       <h1 className="text-4xl font-bold border-spacing-9 ">Sitterly</h1>
+    //       <div className="flex items-center">
+    //         {!user && (
+    //           <div>
+
+    //             <button className="bg-black-500 text-white px-2 py-2 text-xl rounded-md  hover:bg-purple-600" onClick={handleClick}>To Register</button>
+    //             {showRegisterPopup && (
+    //               < ToRegister onClose={handleClose} />
+
+    //             )}
+    //           </div>
+    //         )}
+    //         {user && (
+    //           <button
+    //             onClick={(e) => {
+    //               e.preventDefault();
+    //               logout();
+    //               navigate('/');
+
+    //             }}
+    //             className="hover:text-purple-500  "
+    //           >
+    //             Logout
+    //           </button>
+    //         )}
+    //       </div>
+    //       <Header isAuthenticated={!!user} />
+
+
+    <section className="sm:max-lg:bg-blue-500 md:grid-cols-1 md:items-center md:text-left sm:max-xl:p-9  gap-8">
       <div className="App min-h-screen flex flex-col">
-        <header className="bg-teal-400 text-black p-4 flex justify-between items-center">
-          <h1 className="text-4xl font-bold border-spacing-9 ">Sitterly</h1>
-          <div className="flex space-between">
-            {!user && (
-              <div>
+        <header className="bg-teal-400 text-black p-4 flex  justify-between items-center">
+          <div className="flex space-between items-row ">
+            <div className="flex items-center">
+              {user && (
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    logout();
+                    navigate('/');
+                  }}
+                  className="hover:text-purple-500 mr-4"
+                >
+                  Logout
+                </button>
+              )}
+              <h1 className="text-4xl font-bold border-spacing-9 ">Sitterly</h1>
+            </div>
+            <div>
+              {!user && (
+                <div>
+                  <button className="bg-black-500 text-white px-2 py-2 text-xl rounded-md hover:bg-purple-600" onClick={handleClick}>To Register</button>
+                  {showRegisterPopup && (
+                    < ToRegister onClose={handleClose} />
+                  )}
+                </div>
+              )}
+            </div>
 
-                <button className="bg-black-500 text-white px-2 py-2 text-xl rounded-md  hover:bg-purple-600" onClick={handleClick}>To Register</button>
-                {showRegisterPopup && (
-                  < ToRegister onClose={handleClose} />
-
-                )}
-              </div>
-            )}
-
-            {user && (
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  logout();
-                  navigate('/');
-
-                }}
-                className="hover:text-purple-500"
-              >
-                Logout
-              </button>
-            )}
           </div>
           <Header isAuthenticated={!!user} />
         </header>
-        <p className="text-3xl font-bold mb-50 text-black-500">Welcome to Sitterly!</p>
+        {isWelcomeOrHomePage() && (
+          <p className="text-3xl font-bold mb-50 text-black-500">Welcome to Sitterly!</p>
+        )}
         <ToastContainer />
         <main className="flex-grow">
           <Routes>

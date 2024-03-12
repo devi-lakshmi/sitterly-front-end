@@ -47,34 +47,34 @@ const CreateBookings = () => {
       });
   };
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-md shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Book a Sitter</h2>
+    <div className="max-w-md mx-auto mt-8 p-4 bg-stone-900 rounded shadow-md">
+      <h2 className="text-2xl text-gray-100 font-bold mb-4">Book a Sitter</h2>
       {error && <div className="text-red-500 mb-4"></div>}
       <form onSubmit={handleBooking}>
-        <label className="block mb-4">
-
+        <label className="block mb-4 text-gray-100">
+          Start Date:
           <input
             type="datetime-local"
             value={form.starts_at}
             onChange={handleInputChange}
             name="starts_at"
-            className="mt-1 p-2 border rounded-md w-full"
+            className="mt-1 p-2 border rounded-md  text-stone-900 w-full"
           />
         </label>
-        <label className="block mb-4">
+        <label className="block mb-4 text-gray-100">
           End Date:
           <input
             type="datetime-local"
             value={form.ends_at}
             onChange={handleInputChange}
             name="ends_at"
-            className="mt-1 p-2 border rounded-md w-full"
+            className="mt-1 p-2 border text-stone-900 rounded-md w-full"
           />
         </label>
         <div className="button-container flex space-x-4 mt-4">
           <button
             type="submit"
-            className="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600"
+            className="bg-blue-500 text-white w-full px-2 py-1 rounded-md hover:bg-purple-600"
             disabled={isLoading}
           >
             {isLoading ? 'Booking...' : 'Book Sitter'}

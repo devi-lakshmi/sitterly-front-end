@@ -47,8 +47,8 @@ export const LogInPage = () => {
   }, [user, navigate]);
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-4 bg-white rounded shadow-md">
-      <h1 className="text-2xl font-semibold mb-4">Log In</h1>
+    <div className="max-w-md mx-auto mt-8 p-4 bg-stone-900 rounded shadow-md">
+      <h1 className="text-2xl text-gray-100 font-semibold mb-4">Log In</h1>
       {error && <div className="text-red-500 mb-4">{error}</div>}
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -79,7 +79,7 @@ export const LogInPage = () => {
         </div>
         <button 
           type="submit"
-          className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700"
+          className="bg-blue-500 w-full text-white p-2 text-xl rounded-md hover:bg-purple-700"
           
         >
           Log In

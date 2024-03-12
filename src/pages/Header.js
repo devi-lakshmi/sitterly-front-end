@@ -9,7 +9,7 @@ const Header = ({ isAuthenticated }) => {
 
         {isAuthenticated && (
           <>
-            <div className="flex space-x-4 sm:flex-row" >
+            <div className="flex space-x-4 flex-col sm:flex-col lg:flex-row " >
               <li>
                 <Link to="/"></Link>
               </li>

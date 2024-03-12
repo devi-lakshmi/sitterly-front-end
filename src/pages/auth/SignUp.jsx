@@ -42,7 +42,7 @@ const handleCreateSignup = () => {
   };
 
   return (
-    <div className="bg-black rounded shadow-md max-w-lg p-4">
+    <div className= "max-w-md mx-auto mt-8 p-4 bg-stone-900 rounded shadow-md">
      
       <h1 className="text-2xl font-semibold text-white mb-4">Sign Up</h1>
       
@@ -74,39 +74,9 @@ const handleCreateSignup = () => {
             className="mt-1 p-2 border rounded w-full"
           />
        </div>
-        {/* <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-600">
-           
-          </label>
-          <div className="flex">
-            <label className="inline-flex items-center mr-4">
-              <input
-                type="radio"
-                name="role"
-                value="sitter"
-                checked={role === "sitter"}
-                onChange={handleChange}
-                className="form-radio"
-              />
-              <span className="ml-2">Sitter</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input
-                type="radio"
-                name="role"
-                value="parent"
-                checked={role === "parent"}
-                onChange={handleChange}
-                className="form-radio"
-              />
-              <span className="ml-2">Parent</span>
-            </label>
-          </div>
-        </div>
-         */}
-         <button
+        <button
           type="submit" onClick={handleCreateSignup}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="bg-blue-500 text-white px-4 py-2 w-full text-lg rounded hover:bg-purple-700"
         >
           Sign Up
         </button>
