@@ -30,9 +30,7 @@ function App() {
     setShowRegisterPopup(false);
 
   };
-  const isWelcomeOrHomePage = () => {
-    return location.pathname === '/' || location.pathname === '/home';
-  };
+
   return (
     // <section className="sm:max-lg:bg-blue-500 md:grid-cols-1 md:items-center md:text-left sm:max-xl:p-9  gap-8">
     //   <div className="App min-h-screen flex flex-col">
@@ -66,11 +64,12 @@ function App() {
     //       <Header isAuthenticated={!!user} />
 
 
-    <section className="sm:max-lg: md:grid-cols-1 md:items-center md:text-left sm:max-xl:p-9  gap-8">
+    <section className="sm:max-lg md:grid-cols-1 md:items-center md:text-left sm:max-xl:p-9  gap-8">
       <div className="App min-h-screen flex flex-col">
-        <header className="bg-teal-400 text-black p-4 flex  justify-between items-center">
+        <header className="bg-teal-200 text-black p-4 flex  justify-between items-center">
           <div className="flex space-between items-row ">
             <div className="flex items-center">
+
               {user && (
                 <button
                   onClick={(e) => {
@@ -83,12 +82,12 @@ function App() {
                   Logout
                 </button>
               )}
-              <h1 className="text-4xl font-bold border-spacing-9 ">Sitterly</h1>
+              <h1 className="text-4xl font-bold border-spacing-6 ">Sitterly</h1>
             </div>
             <div>
               {!user && (
-                <div>
-                  <button className="bg-black-500 text-white px-2 py-2 text-xl rounded-md hover:bg-purple-600" onClick={handleClick}>To Register</button>
+                <div >
+                  <button className="bg-black-500 text-purple-600 ml-8 px-2 py-2 text-xl rounded-md hover:text-fuchsia-600" onClick={handleClick}>To Register</button>
                   {showRegisterPopup && (
                     < ToRegister onClose={handleClose} />
                   )}
@@ -99,9 +98,7 @@ function App() {
           </div>
           <Header isAuthenticated={!!user} />
         </header>
-        {isWelcomeOrHomePage() && (
-          <p className="text-3xl font-bold mb-50 text-black-500">Welcome to Sitterly!</p>
-        )}
+
         <ToastContainer />
         <main className="flex-grow">
           <Routes>
