@@ -45,10 +45,8 @@ Make sure you have Node.js installed on your machine. This will also install npm
 ### Install Dependencies
 Run the following command to install the required dependencies:
 
-bash
-## Install
- $ npm install
-### 1. Clone the Repository
+
+### clone the Repository
 
 Clone the repository to your local machine:
 
@@ -57,14 +55,12 @@ git clone https://github.com/yourusername/sitterly-frontend.git
 cd sitterly-frontend
 
 
-
- As a User, I can filter SitterProfiles on their City.
-
-
 ### To install
+```bash
 $ npm install
 
 # To run
+```bash
 $ npm start
 
  Compiled successfully!
