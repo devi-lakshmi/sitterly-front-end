@@ -46,24 +46,6 @@ Make sure you have Node.js installed on your machine. This will also install npm
 Run the following command to install the required dependencies:
 
 bash
-Copy code
-npm install
-4. Create a .env File
-Create a .env file in the root directory with the following content:
-
-env
-Copy code
-REACT_APP_API_URL=http://localhost:8000  # URL of the backend API
-5. Running the Application
-To start the React application, use the following command:
-
-bash
-Copy code
-npm start
-
-
-
-
 ## Install
  $ npm install
 ### 1. Clone the Repository
