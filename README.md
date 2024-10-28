@@ -31,8 +31,8 @@ The Babysitter Application helps babysitters manage their clients effectively, p
 ## Technologies Used
 
 - **Frontend**: React
-- **State Management**: Redux, React Context
-- **Styling**: CSS, Bootstrap, Tailwind CSS
+- **State Management**: Redux and  React Context
+- **Styling**: CSS and TailwindCSS
 - **Routing**: React Router
 - **APIs**: RESTful APIs for dynamic data management
 
@@ -40,27 +40,24 @@ The Babysitter Application helps babysitters manage their clients effectively, p
  ## Prerequisites
 
 This application requires a connection to the backend. You can find the backend repository here: [Sitterly Backend](https://github.com/devi-lakshmi/sitterly-backend).
+
 ## Install Node.js and npm
 Make sure you have Node.js installed on your machine. This will also install npm (Node Package Manager).
+
 ### Install Dependencies
 Run the following command to install the required dependencies:
 
-
-### clone the Repository
+### Clone the Repository
 
 Clone the repository to your local machine:
 
 ```bash
 git clone https://github.com/yourusername/sitterly-frontend.git
 cd sitterly-frontend
-
-
 ### To install
-```bash
 $ npm install
 
 # To run
-```bash
 $ npm start
 
  Compiled successfully!
@@ -69,6 +66,5 @@ $ npm start
 
   Local:            http://localhost:3000/
   On Your Network:  http://192.168.1.54:3000/
-  
-# Access to deployed sitterly on Netlify
-https://baby-sitterly-app.netlify.app
+
+Open your web browser and navigate to http://localhost:3000 to access the Babysitter Application.
